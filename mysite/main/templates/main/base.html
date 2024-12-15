@@ -3,9 +3,45 @@
 
 <head>
     <title>{% block title %}Base Template{%endblock%}</title>
+    {% block mycss %}{% endblock %}
+    <style>
+        
+        .sidenav{
+            background-color: hsl(0, 0%, 18%);
+            height: 100%;
+            width: 160px;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            position: fixed;
+            z-index: 1;
+            padding-top: 20px;
+        }
+        .sidenav a{
+            padding: 6px 8px 6px 16px;
+            font-size: 25px;
+            color: #758492;
+            display: block;
+            text-decoration: none;
+        }
+        .sidenav a:hover{
+            color: hsl(209, 12%, 82%);
+        }
+        .content{
+            margin-left: 160px;
+            padding-left: 20px;
+        }
+    </style>
+    
 </head>
 
 <body>
+    <div class="sidenav">
+        <a href="#">Home</a>
+        <a href="/create">Create</a>
+        
+    </div>
+
     <div class="content" name="content">
         {% block content %}
         {% endblock %}
