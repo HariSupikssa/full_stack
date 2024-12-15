@@ -43,3 +43,7 @@ def create(response):
     else:
         form = CreateNewList()
     return render(response,"main/create.html",{"form":form})
+
+def listall(response):
+    ls = ToDoList.objects.all()
+    return render(response,"main/viewlist.html",{"ls":ls})

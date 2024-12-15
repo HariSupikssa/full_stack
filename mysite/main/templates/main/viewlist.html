@@ -1,0 +1,25 @@
+{% extends "main/base.html" %}
+
+{% block title %}To-Do Lists{% endblock %}
+
+{% block mycss %}
+<style>
+    a{
+        text-decoration: none;
+    }
+    a:hover
+    {
+        color: rgb(39, 12, 65);
+    }
+</style>
+{%endblock%}
+
+{% block content %}
+    <h1>To-Do Lists</h1>
+    <ol>
+        {% for l in ls %}
+            <li><a href="/{{l.id}}" style="text-decoration: none;">{{l.name}}</a></li>
+        {% endfor %}
+    </ol>
+    
+{% endblock %}
