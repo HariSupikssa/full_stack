@@ -3,12 +3,16 @@
 {% block title %}Create New List{%endblock%}
 
 {% block content %}
-<h1>Create List</h1>
-<form action="/create/" method="post">
+<h3>Create List</h3>
+<form action="/create/" method="post" class="form-group">
     {% csrf_token %}
     <!-- To avoid CSRF error -->
 
-    {{form.as_p}}
-    <button type="submit" name="Save">Create</button>
+    <div class="input-group mb-3">
+        <!-- {{form.as_p}} -->
+        
+        <div class="input-group-prepend"><button type="submit" name="Save" class="btn btn-dark">Create</button></div>
+        {{form.name}}
+    </div>
 </form>
 {% endblock %}

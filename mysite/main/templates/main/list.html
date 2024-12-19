@@ -4,24 +4,51 @@
 View List
 {% endblock %}
 
+{% block mycss %}
+    <style>
+        #listitem
+        {
+            outline: none;
+        }
+        .input-group-text:hover
+        {
+            background-color:hsl(210, 21%, 88%) ;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
 <h1>{{ls.name}}</h1>
 <form action="#" method="post">
     {% csrf_token %}
     
-<ul>
+
     {% for item in ls.item_set.all %}
-        {% if item.complete == True %}
-            <li><input type="checkbox" name="c{{item.id}}" value="clicked" checked>{{item.text}}</li>
-        {% else %}
-            <li><input type="checkbox" name="c{{item.id}}" value="clicked" >{{item.text}}</li>
-        {% endif %}
+        <div class="input-group mb-3 ">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    {% if item.complete == True %}
+                        <input type="checkbox" name="c{{item.id}}" value="clicked" checked >
+                    {% else %}
+                        <input type="checkbox" name="c{{item.id}}" value="clicked" >
+                    {% endif %}
+                </div>
+            </div>
+            <input type="text" value="{{item.text}}" readonly id="listitem">
+        </div>
     {% endfor %}
 
-    <button type="submit" name="save" value="save">Save</button>
-    <input type="text" name="new" >
-    <button type="submit" name="newItem" value="newItem">Add Item</button>
-</ul>
+    <div class="input-group mb-3">
+        
+        
+        <div class="input-group-prepend">
+            <button type="submit" name="newItem" value="newItem" class="btn btn-dark">Add Item</button>
+        </div>
+        <input type="text" name="new" >
+
+        <button type="submit" name="save" value="save" class="btn btn-dark">Save</button>
+    </div>
+
     
 
 </form>
