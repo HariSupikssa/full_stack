@@ -5,4 +5,9 @@
 
 {% block content %}
 <h3>Home page</h3>
+<form method="post" action="">
+    {% csrf_token %}
+    <button type="submit">logout</button>
+</form>
 {% endblock %}
+
