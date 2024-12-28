@@ -3,12 +3,14 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import ToDoList, Item
 from .forms import CreateNewList
+from django.contrib.auth import logout, authenticate
+from django.contrib import messages
 
 # Create your views here.
 def index(response, id):
     ls = ToDoList.objects.get(id=id)
     if(response.method == "POST"):
-        print(response.POST)
+        # print(response.POST)
         if(response.POST.get("save")):
             for item in ls.item_set.all():
                 if(response.POST.get("c"+str(item.id))=="clicked"):
@@ -28,8 +30,12 @@ def index(response, id):
 
     return render(response,"main/list.html",{"ls":ls})
 
-def home(response):
-    return render(response,"main/home.html",{})
+def home(request):
+    if(request.POST.get("logout")):
+        logout(request)
+        messages.success(request,("You are logged out"))
+    # return redirect("/home")
+    return render(request,"main/home.html",{})
 
 def create(response):
     if response.method == "POST":
