@@ -44,6 +44,8 @@ def create(response):
             n = form.cleaned_data["name"]
             t = ToDoList(name=n)
             t.save()
+            # response.user.todolist_set.create(name = n)
+            response.user.todolist.add(t)
             return HttpResponseRedirect("/%i" %t.id)
             
     else:
@@ -51,5 +53,6 @@ def create(response):
     return render(response,"main/create.html",{"form":form})
 
 def listall(response):
-    ls = ToDoList.objects.all()
-    return render(response,"main/viewlist.html",{"ls":ls})
+    # ls = ToDoList.objects.all()
+    # return render(response,"main/viewlist.html",{"ls":ls})
+    return render(response, "main/viewlist.html", {})

@@ -15,11 +15,14 @@
 {%endblock%}
 
 {% block content %}
-    <h3>To-Do Lists</h3>
+    <!-- <h3>To-Do Lists</h3>
     <ol>
         {% for l in ls %}
             <li><a href="/{{l.id}}" style="text-decoration: none;">{{l.name}}</a></li>
         {% endfor %}
-    </ol>
+    </ol> -->
+    {% for td in user.todolist.all %}
+        <p><a href="/{{td.id}}">{{td.name}}</a></p>
+    {% endfor %}
     
 {% endblock %}

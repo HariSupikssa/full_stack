@@ -1,7 +1,21 @@
 {% extends 'main/base.html' %}
 
 {% block title %}Home{% endblock %}
+{%block mycss%}
+    <style>
+        #lgb
+        {
+            border: none;
+            background: none;
+            padding: none;
+            outline-style: none;
+            color: blue;
+            text-decoration: underline;
+            
+        }
 
+    </style>
+{% endblock %}
 
 {% block content %}
 <h3>Home page</h3>
@@ -12,7 +26,7 @@
                         <form method="post" action="/home">
                             {% csrf_token %}
                             <br>
-                            <button type="submit" value="logout" name="logout">logout</button>
+                            <button type="submit" value="logout" name="logout" id="lgb">logout</button>
                         </form>
                     {% else %}
                         <p>You are not logged in</p>
